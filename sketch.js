@@ -13,7 +13,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(window.innerWidth, window.innerHeight);
   x = random(width);
   y = random(height);
   xspeed = 3;
@@ -26,6 +26,12 @@ function pickColor() {
   g = random(200, 256);
   b = random(200, 256);
 }
+
+
+function windowResized() {
+  resizeCanvas(window.innerWidth, window.innerHeight);
+}
+
 
 function draw() {
   //background(0);
