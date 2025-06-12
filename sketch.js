@@ -4,7 +4,7 @@ let y;
 let xspeed;
 let yspeed;
 
-let dvd;
+let bounce;
 
 let r, g, b;
 
@@ -13,7 +13,12 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(window.innerWidth, window.innerHeight);
+  // Use the actual size of the iframe container
+  const container = document.documentElement;
+  const w = container.clientWidth;
+  const h = container.clientHeight;
+
+  createCanvas(w, h);
   x = random(width);
   y = random(height);
   xspeed = 3;
@@ -27,20 +32,13 @@ function pickColor() {
   b = random(200, 256);
 }
 
-
-function windowResized() {
-  resizeCanvas(window.innerWidth, window.innerHeight);
-}
-
-
 function draw() {
-  //background(0);
-  // rect(x, y, 80, 60);
+  // No background() = persistent trails
   tint(r, g, b);
   image(bounce, x, y);
 
-  x = x + xspeed;
-  y = y + yspeed;
+  x += xspeed;
+  y += yspeed;
 
   if (x + bounce.width >= width) {
     xspeed = -xspeed;
@@ -63,5 +61,9 @@ function draw() {
   }
 }
 
-
-
+function windowResized() {
+  const container = document.documentElement;
+  const w = container.clientWidth;
+  const h = container.clientHeight;
+  resizeCanvas(w, h);
+}
