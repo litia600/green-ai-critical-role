@@ -4,29 +4,21 @@ let y;
 let xspeed;
 let yspeed;
 
-let bounce;
+let dvd;
 
 let r, g, b;
 
 function preload() {
-  bounce = loadImage('dark.png'); // make sure dark.png is in your project folder
+  bounce = loadImage('dark.png');
 }
 
 function setup() {
-  // Create a canvas that fits the iframe window size
-  const canvas = createCanvas(windowWidth, windowHeight);
-  canvas.parent(document.body); // attaches canvas to body so it fills the whole page
-
+  createCanvas(windowWidth, windowHeight);
   x = random(width);
   y = random(height);
   xspeed = 3;
   yspeed = 3;
   pickColor();
-}
-
-function windowResized() {
-  // Resize canvas when the iframe's viewport resizes (e.g. device rotates)
-  resizeCanvas(windowWidth, windowHeight);
 }
 
 function pickColor() {
@@ -36,16 +28,14 @@ function pickColor() {
 }
 
 function draw() {
-  // Optional: remove background() to get trail effect
-  // background(0);
-
+  //background(0);
+  // rect(x, y, 80, 60);
   tint(r, g, b);
   image(bounce, x, y);
 
-  x += xspeed;
-  y += yspeed;
+  x = x + xspeed;
+  y = y + yspeed;
 
-  // Bounce off the sides
   if (x + bounce.width >= width) {
     xspeed = -xspeed;
     x = width - bounce.width;
