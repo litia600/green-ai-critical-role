@@ -13,12 +13,22 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const container = document.documentElement; // <html> element
+  const w = container.clientWidth;
+  const h = container.clientHeight;
+  createCanvas(w, h);
   x = random(width);
   y = random(height);
   xspeed = 3;
   yspeed = 3;
   pickColor();
+}
+
+function windowResized() {
+  const container = document.documentElement;
+  const w = container.clientWidth;
+  const h = container.clientHeight;
+  resizeCanvas(w, h);
 }
 
 function pickColor() {
