@@ -1,11 +1,8 @@
 let x;
 let y;
-
 let xspeed;
 let yspeed;
-
-let dvd;
-
+let bounce;
 let r, g, b;
 
 function preload() {
@@ -13,22 +10,12 @@ function preload() {
 }
 
 function setup() {
-  const container = document.documentElement; // <html> element
-  const w = container.clientWidth;
-  const h = container.clientHeight;
-  createCanvas(w, h);
+  createCanvas(windowWidth, windowHeight);
   x = random(width);
   y = random(height);
   xspeed = 3;
   yspeed = 3;
   pickColor();
-}
-
-function windowResized() {
-  const container = document.documentElement;
-  const w = container.clientWidth;
-  const h = container.clientHeight;
-  resizeCanvas(w, h);
 }
 
 function pickColor() {
@@ -38,13 +25,11 @@ function pickColor() {
 }
 
 function draw() {
-  //background(0);
-  // rect(x, y, 80, 60);
   tint(r, g, b);
   image(bounce, x, y);
 
-  x = x + xspeed;
-  y = y + yspeed;
+  x += xspeed;
+  y += yspeed;
 
   if (x + bounce.width >= width) {
     xspeed = -xspeed;
